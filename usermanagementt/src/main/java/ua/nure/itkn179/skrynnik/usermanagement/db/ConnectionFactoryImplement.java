@@ -10,13 +10,20 @@ public class ConnectionFactoryImplement implements ConnectionFactory {
 		// TODO Auto-generated constructor stub
 	}
 
+		private String driver; 
+		private String url; 
+		private String user; 
+		private String password; 
+		
+	public ConnectionFactoryImplement(String driver, String url, String user, String password) {
+     this.driver= driver;
+     this.url= url;
+     this.user = user;
+     this.password = password;
+	}
+
 	@Override
 	public Connection createConnection() throws DatabaseException {
-		String driver = "org.hsqldb.jdbcDriver";
-		String url = "jdbc:hsqldb:file:db/usermanagement";
-		String user = "sa";
-		String password = "";
-
 		try {
 			Class.forName(driver);
 		} catch (ClassNotFoundException e) {
