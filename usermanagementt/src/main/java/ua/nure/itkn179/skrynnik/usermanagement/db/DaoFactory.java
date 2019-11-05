@@ -3,7 +3,9 @@ package ua.nure.itkn179.skrynnik.usermanagement.db;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.hsqldb.User;
+import ua.nure.itkn179.skrynnik.usermanagement.User;
+
+
 
 public class DaoFactory {
 	private final Properties properties;

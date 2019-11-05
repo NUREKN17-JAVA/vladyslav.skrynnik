@@ -1,4 +1,4 @@
-package ua.nure.itkn179.skrynnik.db;
+package ua.nure.itkn179.skrynnik.usermanagement.db;
 
 import java.util.Calendar;
 
@@ -13,11 +13,16 @@ import ua.nure.itkn179.skrynnik.usermanagement.User;
 import ua.nure.itkn179.skrynnik.usermanagement.db.ConnectionFactory;
 import ua.nure.itkn179.skrynnik.usermanagement.db.ConnectionFactoryImplement;
 import ua.nure.itkn179.skrynnik.usermanagement.db.DatabaseException;
-import ua.nure.itkn179.skrynnik.usermanagement.db.HsqldbUserDao;
+
 
 public class HsqldbUserDaoTest extends DatabaseTestCase {
 	private HsqldbUserDao dao;
 	private ConnectionFactory connectionFactory;
+	
+	private static final String DRIVER = "org.hsqldb.jdbcDriver";
+	private static final String URL = "jdbc:hsqldb:file:db/usermanagement";
+	private static final String USER = "sa";
+    private static final String PASSWORD = "";
 
 
 	private static final String LAST_NAME = "Forma";
@@ -64,7 +69,7 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 
 	@Override
 	protected IDatabaseConnection getConnection() throws Exception {
-		connectionFactory = new ConnectionFactoryImplement();
+		connectionFactory = new ConnectionFactoryImplement(DRIVER, URL, USER, PASSWORD);
         return new DatabaseConnection(connectionFactory.createConnection());
 	}
 

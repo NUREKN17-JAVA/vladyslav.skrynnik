@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import java.util.Collection;
 
 import ua.nure.itkn179.skrynnik.usermanagement.User;
-public class HsqldbUserDao implements Dao<User> {
+class HsqldbUserDao implements Dao<User> {
 	
 	private static final String INSERT_QUERY = "INSERT INTO users (firstname, lastname, dateofbirth) VALUES (?, ?, ?)";
 	private static final String SELECT_ALL_QUERY = "SELECT * FROM users";
