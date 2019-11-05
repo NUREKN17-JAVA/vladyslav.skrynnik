@@ -7,6 +7,7 @@ import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.XmlDataSet;
+import java.util.Collection;
 
 import ua.nure.itkn179.skrynnik.usermanagement.User;
 import ua.nure.itkn179.skrynnik.usermanagement.db.ConnectionFactory;
@@ -54,6 +55,12 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 	protected void tearDown() throws Exception {
 		super.tearDown();
 	}
+	
+	public void testFindAll() throws DatabaseException {
+        Collection<User> items = dao.findAll();
+        assertNotNull("Collection is null", items);
+        assertEquals("Collection size doesn't match.", 2, items.size());
+    }
 
 	@Override
 	protected IDatabaseConnection getConnection() throws Exception {

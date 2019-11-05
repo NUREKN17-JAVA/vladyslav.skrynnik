@@ -14,7 +14,7 @@ import ua.nure.itkn179.skrynnik.usermanagement.User;
 public class HsqldbUserDao implements Dao<User> {
 	
 	private static final String INSERT_QUERY = "INSERT INTO users (firstname, lastname, dateofbirth) VALUES (?, ?, ?)";
-	
+	private static final String SELECT_ALL_QUERY = "SELECT id, firstname, lastname, dateofbirth FROM users";
 	private ConnectionFactory connectionFactory;
 
 	public HsqldbUserDao(ConnectionFactory connectionFactory) {
@@ -74,8 +74,23 @@ public class HsqldbUserDao implements Dao<User> {
 
 	@Override
 	public Collection<User> findAll() throws DatabaseException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+						Collection<User> result = new LinkedList<>();
+				Connection connection = connectionFactory.createConnection();
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery(SELECT_ALL_QUERY);
+				while (resultSet.next()) {
+		                User user = new User();
+		                user.setId(new Long(resultSet.getLong(1)));
+		                user.setFirstName(resultSet.getString(2));
+		                user.setLastName(resultSet.getString(3));
+		                user.setDateOfBirthd(resultSet.getDate(4));
+		                result.add(user);
+		        }
+				return result;
+			}catch(SQLException e) {
+				throw new DatabaseException(e);
+			}
+		}		
 	}
 
-}
