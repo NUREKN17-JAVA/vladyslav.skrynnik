@@ -5,6 +5,7 @@ import java.util.Calendar;
 import org.dbunit.DatabaseTestCase;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.XmlDataSet;
 
 import ua.nure.itkn179.skrynnik.usermanagement.User;
 import ua.nure.itkn179.skrynnik.usermanagement.db.ConnectionFactory;
@@ -62,8 +63,8 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 
 	@Override
 	protected IDataSet getDataSet() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		IDataSet dataSet = new 	XmlDataSet(getClass().getClassLoader().getResourceAsStream("usersDataSet.xml"));
+				return dataSet;
 	}
 
 }
